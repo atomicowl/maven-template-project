@@ -1,0 +1,8 @@
+#!/bin/sh
+
+echo "Execute COMMIT-MSG hook"
+
+if ! grep -qE "^(feat|fix|docs|style|refactor|test|chore):" "$1"; then
+    echo "❌ Bad commit message format. Use 'feat: description'"
+    exit 1
+fi

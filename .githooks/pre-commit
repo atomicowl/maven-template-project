@@ -1,0 +1,14 @@
+#!/bin/sh
+# This script runs inside the Git Bash environment on Windows,
+# so standard /bin/sh syntax works there too.
+
+echo "Execute PRE-COMMIT hook"
+
+# Check if 'just' is installed
+if ! command -v just >/dev/null 2>&1; then
+    echo "⚠️ 'just' not found. Skipping hooks."
+    exit 0
+fi
+
+# Delegate to the cross-platform Justfile
+just fix

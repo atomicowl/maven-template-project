@@ -1,0 +1,9 @@
+#!/bin/sh
+
+echo "Execute PRE-COMMIT-MSG hook"
+
+BRANCH_NAME=$(git symbolic-ref --short HEAD)
+TICKET=$(echo "$BRANCH_NAME" | grep -oE '[A-Z]+-[0-9]+')
+if [ -n "$TICKET" ]; then
+    echo "[$TICKET] $(cat "$1")" > "$1"
+fi
